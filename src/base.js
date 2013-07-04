@@ -7,53 +7,36 @@
  * - event system
  */
 'use strict';
-define(['base'], function() {
-    return {
-        create : function(name, P, px, sx) {
-            var C;
 
-            if (px && px.hasOwnProperty('constructor')) {
-                C = px.constructor;
-            }
-            else {
-                C = function() {
-                  return P.apply(this, arguments);
-                };
-            }
+define(['object','base'], function(O){
 
-            var _i;
-            
-            for (_i in P) {
-                if (P.hasOwnProperty(_i)) {
-                    C[_i] = P[_i];
+        return {
+            create : function(name, P, px, sx){
+                var _i, C;
+
+                if (px && px.hasOwnProperty('constructor')) {
+                    C = px.constructor;
                 }
-            }
-            
-            var F = function() {
-              this.constructor = C;
-            };
-            
-            F.prototype = P.prototype;
-
-            C.prototype = new F;
-
-            for (_i in sx) {
-                if (sx.hasOwnProperty(_i)) {
-                    C[_i] = sx[_i];
+                else {
+                    C = function(){
+                        return P.apply(this, arguments);
+                    };
                 }
+
+                O.extend(C, P);
+
+                var F = function(){ this.constructor = C; };
+
+                F.prototype = P.prototype;
+                C.prototype = new F;
+
+                O.extend(C, sx);
+                O.extend(C.prototype, px);
+
+                C.name = name;
+                C.__super__ = P.prototype;
+
+                return C;
             }
-
-            for (_i in px) {
-                if (px.hasOwnProperty(_i)) {
-                    C.prototype[_i] = px[_i];
-                }
-            }
-
-            C.name = name;
-
-            C.__super__ = P.prototype;
-
-            return C;
-        }
-    };
-});
+        };
+    });
