@@ -1,8 +1,9 @@
 require.config({
-   baseUrl : '../src/'
+    baseUrl : '../src/',
+    urlArgs : 'f=' + Date.now()
 });
 
-require(['base', 'widget'], function(base, widget) {
+require(['pui/base', 'pui/widget'], function(base, widget) {
     var ChildWidget = base.create('ChildWidget', widget.Base, {
         initializer : function(cfg) {
             console.log('lvl 2', this.name, cfg);
@@ -12,6 +13,15 @@ require(['base', 'widget'], function(base, widget) {
     var InnerWidget = base.create('InnerWidget', ChildWidget, {
         initializer : function(cfg) {
             console.log('lvl 3', this.name, cfg);
+        },
+        renderUI : function() {
+            console.log(this);
+        },
+        bindUI : function() {
+
+        },
+        syncUI : function() {
+
         }
     });
 
@@ -32,4 +42,6 @@ require(['base', 'widget'], function(base, widget) {
     console.log(c instanceof InnerWidget);
     console.log(c instanceof ChildWidget);
     console.log(c instanceof widget.Base);
+
+    i.render();
 });

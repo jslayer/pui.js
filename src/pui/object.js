@@ -1,6 +1,6 @@
 'use strict';
 
-define(['object'], function() {
+define(['pui/object'], function() {
 
     return {
         each   : function(o, cb, ctx){
