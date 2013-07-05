@@ -3,46 +3,6 @@ require.config({
 });
 
 require(['base', 'widget'], function(base, widget) {
-    /*console.log(base);
-
-    function Animal() {
-        //console.log('Animal');
-    }
-
-    Animal.prototype.isAnimal = function() {
-        console.log('is animal');
-        return this;
-    };
-
-    *//**
-     * @constructor
-     *//*
-    var Rabbit = base.create('rabbit', Animal, {
-        isRabbit : function() {
-            console.log('is rabbit');
-            return this;
-        },
-        live : true
-    }, {
-        attrs : [1,2,3]
-    });
-
-    var r = new Rabbit;
-
-    window.r = r;
-
-    console.log(r);
-    console.log(r instanceof Animal);
-    console.log(r instanceof Rabbit);*/
-
-    //console.log(Widget, new Widget);
-
-    /*window.Widget = widget.Base;
-    window.wdt = new widget.Base();*/
-    //window.wdb = widget.Base;
-
-    //console.log(new widget.Base());
-
     var ChildWidget = base.create('ChildWidget', widget.Base, {
         initializer : function(cfg) {
             console.log('lvl 2', this.name, cfg);
@@ -55,10 +15,6 @@ require(['base', 'widget'], function(base, widget) {
         }
     });
 
-    /*console.log(new InnerWidget({
-        some: 'value'
-    }));*/
-
     var i = new InnerWidget({
         test : 'value'
     });
@@ -69,6 +25,11 @@ require(['base', 'widget'], function(base, widget) {
 
     console.log('------');
 
+    var c = new ChildWidget({
+        some: 'other'
+    });
 
-
+    console.log(c instanceof InnerWidget);
+    console.log(c instanceof ChildWidget);
+    console.log(c instanceof widget.Base);
 });

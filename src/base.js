@@ -22,15 +22,10 @@ define(['object', 'array', 'base'], function(O, A){
     }
 
     return {
-        extend : function(C, P, px, sx) {
-
-        },
         create : function(name, P, px, sx){
-            var C;
+            var C, F;
 
-            var F = function() {
-
-            };
+            F = function() {};
 
             if (px && px.hasOwnProperty('constructor')) {
                 C = px.constructor;

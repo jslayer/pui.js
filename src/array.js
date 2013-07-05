@@ -1,7 +1,7 @@
 'use strict';
 
 define(['array'], function() {
-
+    //todo - implement array extras
     return {
         each : function(a, cb, ctx) {
             var i, length;
