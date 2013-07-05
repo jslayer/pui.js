@@ -8,35 +8,51 @@
  */
 'use strict';
 
-define(['object','base'], function(O){
+define(['object', 'array', 'base'], function(O, A){
+    function Core(){
+        var _init = [],
+            link = this;
 
-        return {
-            create : function(name, P, px, sx){
-                var _i, C;
-
-                if (px && px.hasOwnProperty('constructor')) {
-                    C = px.constructor;
-                }
-                else {
-                    C = function(){
-                        return P.apply(this, arguments);
-                    };
-                }
-
-                O.extend(C, P);
-
-                var F = function(){ this.constructor = C; };
-
-                F.prototype = P.prototype;
-                C.prototype = new F;
-
-                O.extend(C, sx);
-                O.extend(C.prototype, px);
-
-                C.name = name;
-                C.__super__ = P.prototype;
-
-                return C;
+        while(link) {
+            if (typeof link.initializer === 'function') {
+                link.initializer.apply(this, arguments)
             }
-        };
-    });
+            link = link.constructor.__super__;
+        }
+    }
+
+    return {
+        extend : function(C, P, px, sx) {
+
+        },
+        create : function(name, P, px, sx){
+            var C;
+
+            var F = function() {
+
+            };
+
+            if (px && px.hasOwnProperty('constructor')) {
+                C = px.constructor;
+            }
+            else {
+                C = function(){
+                    P.apply(this, arguments);
+                };
+            }
+
+            F.prototype = P.prototype;
+            C.prototype = new F();
+
+            O.extend(C, sx);
+            O.extend(C.prototype, px);
+
+            C.__super__ = P.prototype;
+            C.prototype.constructor = C;
+            C.prototype.name = name;
+
+            return C;
+        },
+        Core : Core
+    };
+});
