@@ -24,6 +24,7 @@ define(['pui/object', 'pui/array', 'pui/base'], function(O, A){
     }
 
     return {
+        //todo - add extensions support
         create : function(name, P, px, sx){
             var C, F;
 
