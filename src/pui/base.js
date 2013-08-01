@@ -9,8 +9,6 @@
 'use strict';
 
 define(['pui/object', 'pui/array', 'pui/base'], function(O, A){
-    var oString = Object.prototype.toString;
-
     function Core(){
         var _init = [],
             link = this;
@@ -52,10 +50,10 @@ define(['pui/object', 'pui/array', 'pui/base'], function(O, A){
             return C;
         },
         isArray : function(o) {
-            return oString.call(o) === '[object Array]';
+            return Object.prototype.toString.call(o) === '[object Array]';
         },
         isFunction : function(o) {
-            return oString.call(o) === '[object Function]';
+            return Object.prototype.toString.call(o) === '[object Function]';
         },
         Core : Core
     };
