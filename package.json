@@ -1,0 +1,29 @@
+{
+  "name": "pui.js",
+  "version": "0.0.0",
+  "description": "pui.js ======",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "requirejs": "~2.1.8"
+  },
+  "devDependencies": {
+    "requirejs": "~2.1.8"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jslayer/pui.js.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "1f19d80fa1b8d169574f5841bfcbf06dcbe05ef4",
+  "bugs": {
+    "url": "https://github.com/jslayer/pui.js/issues"
+  }
+}
